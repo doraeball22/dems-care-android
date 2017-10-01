@@ -1,6 +1,5 @@
 package com.dems_care.demscare.activity;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -8,10 +7,9 @@ import android.view.MenuItem;
 import com.dems_care.demscare.R;
 import com.dems_care.demscare.dao.ArticleItemDao;
 import com.dems_care.demscare.fragment.ArticleListFragment;
-import com.dems_care.demscare.fragment.MainFragment;
-import com.dems_care.demscare.fragment.MoreInfoArticleFragment;
+import com.dems_care.demscare.fragment.VideoListFragment;
 
-public class ArticleActivity extends AppCompatActivity {
+public class VideoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +25,7 @@ public class ArticleActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction()
 //                    .add(R.id.contentContainer, MoreInfoArticleFragment.newInstance(dao))
 //                    .commit();
-                    .add(R.id.contentContainer, ArticleListFragment.newInstance())
+                    .add(R.id.contentContainer, VideoListFragment.newInstance())
                     .commit();
         }
     }

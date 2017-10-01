@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -179,6 +180,7 @@ public class ArticleListFragment extends Fragment {
         // Save Instance State here
     }
 
+
     /*
      * Restore Instance State Here
      */
@@ -199,17 +201,33 @@ public class ArticleListFragment extends Fragment {
 //                    ArticleActivity.class);
 //            startActivity(intent);
 
+            // ส่ง dao ไป MainActivity
+//            if (position < listAdapter.getCount() ) {
+////                ArticleItemDao dao = articleListManager.getDao().getArticles().get(position);
+//                ArticleItemDao dao = ( ArticleItemDao) parent.getItemAtPosition(position);
+//                FragmentListener listener = (FragmentListener) getActivity();
+//                listener.onArticleItemClicked(dao);
+//            }
+
+            // ส่ง dao ไป ArticleActivity
             if (position < listAdapter.getCount() ) {
-//                ArticleItemDao dao = articleListManager.getDao().getArticles().get(position);
                 ArticleItemDao dao = ( ArticleItemDao) parent.getItemAtPosition(position);
-                FragmentListener listener = (FragmentListener) getActivity();
-                listener.onArticleItemClicked(dao);
+
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.contentContainer, MoreInfoArticleFragment.newInstance(dao))
+                        .addToBackStack(null)
+                        .commit();
             }
-
-
 
 
         }
     };
+
+    public void replaceFragment(Fragment someFragment) {
+        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+        transaction.replace(R.id.contentContainer, someFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
 
 }

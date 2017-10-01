@@ -1,20 +1,34 @@
 package com.dems_care.demscare.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.dems_care.demscare.R;
+import com.dems_care.demscare.activity.ArticleActivity;
+import com.dems_care.demscare.activity.VideoActivity;
 
 
 /**
  * Created by Bon on 14/9/2560.
  */
 @SuppressWarnings("unused")
-public class MainFragment extends Fragment {
+public class MainFragment extends Fragment implements View.OnClickListener {
+
+    /*
+     * Main Menu Button
+     */
+    ImageButton btnArticleMenu;
+    ImageButton btnVideoMenu;
+    ImageButton btnBookMenu;
+    ImageButton btnTestMenu;
 
     public MainFragment() {
         super();
@@ -52,6 +66,17 @@ public class MainFragment extends Fragment {
     @SuppressWarnings("UnusedParameters")
     private void initInstances(View rootView, Bundle savedInstanceState) {
         // Init 'View' instance(s) with rootView.findViewById here
+        btnArticleMenu = (ImageButton) rootView.findViewById(R.id.btnArticleMenu);
+        btnVideoMenu = (ImageButton) rootView.findViewById(R.id.btnVideoMenu);
+        btnBookMenu = (ImageButton) rootView.findViewById(R.id.btnBookMenu);
+        btnTestMenu = (ImageButton) rootView.findViewById(R.id.btnTestMenu);
+
+        // Event OnClick
+        btnArticleMenu.setOnClickListener(this);
+        btnVideoMenu.setOnClickListener(this);
+        btnBookMenu.setOnClickListener(this);
+        btnTestMenu.setOnClickListener(this);
+
     }
 
     @Override
@@ -81,4 +106,33 @@ public class MainFragment extends Fragment {
         // Restore Instance State here
     }
 
+    /*
+     * OnClick Menu Button
+     */
+    @Override
+    public void onClick(View v) {
+        if (v == btnArticleMenu) {
+            Intent intent = new Intent(getContext(),
+                    ArticleActivity.class);
+            startActivity(intent);
+        }
+
+        if (v == btnVideoMenu) {
+            Intent intent = new Intent(getContext(),
+                    VideoActivity.class);
+            startActivity(intent);
+        }
+
+        if (v == btnBookMenu) {
+            Intent intent = new Intent(getContext(),
+                    VideoActivity.class);
+            startActivity(intent);
+        }
+
+        if (v == btnTestMenu) {
+            Intent intent = new Intent(getContext(),
+                    VideoActivity.class);
+            startActivity(intent);
+        }
+    }
 }

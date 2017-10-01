@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
 
-
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -55,6 +54,7 @@ public class MainActivity extends AppCompatActivity
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.contentContainer, MainFragment.newInstance())
                     .commit();
+
         }
     }
 
@@ -98,61 +98,29 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_video) {
             // Do what you want
-            Fragment fragment = getSupportFragmentManager()
-                    .findFragmentById(R.id.contentContainer);
-            // check isNewFragment?: add new fragment
-            if (fragment instanceof VideoListFragment == false) {
-                getSupportFragmentManager().beginTransaction()
-                        // Fragment standard transition always add before .replace  (TRANSIT_FRAGMENT_OPEN is animation when change fragment )
-                        //.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .setCustomAnimations(
-                                // next animation
-                                R.anim.from_right, R.anim.to_left,
-                                // back animation
-                                R.anim.from_left, R.anim.to_right
-                        )
-
-                        .replace(R.id.contentContainer,
-                                VideoListFragment.newInstance())
-                        .addToBackStack(null)
-                        .commit();
-            }
-            Toast.makeText(MainActivity.this,
-                    "Video List Fragment",
-                    Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this,
+                    VideoActivity.class);
+            startActivity(intent);
+//            openVideo();
             // Handle
             return true;
 
-
         } else if (id == R.id.nav_article) {
-            // Do what you want
-            Fragment fragment = getSupportFragmentManager()
-                    .findFragmentById(R.id.contentContainer);
-            // check isNewFragment?: add new fragment
-            if (fragment instanceof ArticleListFragment == false) {
-                getSupportFragmentManager().beginTransaction()
-                        // Fragment standard transition always add before .replace  (TRANSIT_FRAGMENT_OPEN is animation when change fragment )
-                        //.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                        .setCustomAnimations(
-                                // next animation
-                                R.anim.from_right, R.anim.to_left,
-                                // back animation
-                                R.anim.from_left, R.anim.to_right
-                        )
-                        .replace(R.id.contentContainer,
-                                ArticleListFragment.newInstance())
-                        .addToBackStack(null)
-                        .commit();
-            }
-            Toast.makeText(MainActivity.this,
-                    "Article List Fragment",
-                    Toast.LENGTH_SHORT).show();
-            // Handle
+            Intent intent = new Intent(MainActivity.this,
+                    ArticleActivity.class);
+            startActivity(intent);
+//            openArticle();
             return true;
 
         } else if (id == R.id.nav_book) {
+            Intent intent = new Intent(MainActivity.this,
+                    ArticleActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_test) {
+            Intent intent = new Intent(MainActivity.this,
+                    ArticleActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_facebook) {
 
@@ -165,12 +133,61 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    private void openVideo() {
+        Fragment fragment = getSupportFragmentManager()
+                .findFragmentById(R.id.contentContainer);
+        // check isNewFragment?: add new fragment
+        if (fragment instanceof VideoListFragment == false) {
+            getSupportFragmentManager().beginTransaction()
+                    // Fragment standard transition always add before .replace  (TRANSIT_FRAGMENT_OPEN is animation when change fragment )
+                    //.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .setCustomAnimations(
+                            // next animation
+                            R.anim.from_right, R.anim.to_left,
+                            // back animation
+                            R.anim.from_left, R.anim.to_right
+                    )
+
+                    .replace(R.id.contentContainer,
+                            VideoListFragment.newInstance())
+                    .addToBackStack(null)
+                    .commit();
+        }
+        Toast.makeText(MainActivity.this,
+                "Video List Fragment",
+                Toast.LENGTH_SHORT).show();
+    }
+
+    private void openArticle() {
+        Fragment fragment = getSupportFragmentManager()
+                .findFragmentById(R.id.contentContainer);
+        // check isNewFragment?: add new fragment
+        if (fragment instanceof ArticleListFragment == false) {
+            getSupportFragmentManager().beginTransaction()
+                    // Fragment standard transition always add before .replace  (TRANSIT_FRAGMENT_OPEN is animation when change fragment )
+                    //.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .setCustomAnimations(
+                            // next animation
+                            R.anim.from_right, R.anim.to_left,
+                            // back animation
+                            R.anim.from_left, R.anim.to_right
+                    )
+                    .replace(R.id.contentContainer,
+                            ArticleListFragment.newInstance())
+                    .addToBackStack(null)
+                    .commit();
+        }
+        Toast.makeText(MainActivity.this,
+                "Article List Fragment",
+                Toast.LENGTH_SHORT).show();
+    }
+
 
     @Override
     public void onArticleItemClicked(ArticleItemDao dao) {
         Intent intent = new Intent(MainActivity.this,
                 ArticleActivity.class);
         intent.putExtra("dao", dao);
-            startActivity(intent);
+        startActivity(intent);
     }
 }
