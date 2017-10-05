@@ -6,14 +6,14 @@ import android.view.MenuItem;
 
 import com.dems_care.demscare.R;
 import com.dems_care.demscare.dao.article.ArticleItemDao;
-import com.dems_care.demscare.fragment.ArticleListFragment;
+import com.dems_care.demscare.fragment.QuizListFragment;
 
-public class ArticleActivity extends AppCompatActivity {
+public class QuizActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_article);
+        setContentView(R.layout.activity_quiz);
 
         initInstances();
 
@@ -24,7 +24,7 @@ public class ArticleActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction()
 //                    .add(R.id.contentContainer, MoreInfoArticleFragment.newInstance(dao))
 //                    .commit();
-                    .add(R.id.contentContainer, ArticleListFragment.newInstance())
+                    .add(R.id.contentContainer, QuizListFragment.newInstance())
                     .commit();
         }
     }
@@ -46,4 +46,6 @@ public class ArticleActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 }

@@ -23,7 +23,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.ArticleActivity" />
-        <activity android:name=".activity.VideoActivity"></activity>
+        <activity android:name=".activity.VideoActivity" />
+        <activity android:name=".activity.QuizActivity" />
+        <activity android:name=".activity.EbookActivity"></activity>
     </application>
 
 </manifest>

@@ -1,12 +1,11 @@
 package com.dems_care.demscare.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.dems_care.demscare.R;
-import com.dems_care.demscare.dao.ArticleItemDao;
-import com.dems_care.demscare.fragment.ArticleListFragment;
+import com.dems_care.demscare.dao.article.ArticleItemDao;
 import com.dems_care.demscare.fragment.VideoListFragment;
 
 public class VideoActivity extends AppCompatActivity {
@@ -14,7 +13,7 @@ public class VideoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_article);
+        setContentView(R.layout.activity_video);
 
         initInstances();
 

@@ -1,15 +1,17 @@
 package com.dems_care.demscare.fragment;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
+import android.widget.MediaController;
+import android.widget.VideoView;
 
 import com.dems_care.demscare.R;
-import com.dems_care.demscare.dao.ArticleItemDao;
+import com.dems_care.demscare.dao.video.VideoItemDao;
 
 
 /**
@@ -18,17 +20,16 @@ import com.dems_care.demscare.dao.ArticleItemDao;
 @SuppressWarnings("unused")
 public class MoreInfoVideoFragment extends Fragment {
 
-    WebView myWebView;
-    String pdf;
+    VideoView videoView;
 
-    ArticleItemDao dao;
+    VideoItemDao dao;
 
     public MoreInfoVideoFragment() {
         super();
     }
 
     @SuppressWarnings("unused")
-    public static MoreInfoVideoFragment newInstance(ArticleItemDao dao) {
+    public static MoreInfoVideoFragment newInstance(VideoItemDao dao) {
         MoreInfoVideoFragment fragment = new MoreInfoVideoFragment();
         Bundle args = new Bundle();
         args.putParcelable("dao", dao);
@@ -62,11 +63,12 @@ public class MoreInfoVideoFragment extends Fragment {
     @SuppressWarnings("UnusedParameters")
     private void initInstances(View rootView, Bundle savedInstanceState) {
         // Init 'View' instance(s) with rootView.findViewById here
-        myWebView = (WebView) rootView.findViewById(R.id.webview);
-        myWebView.getSettings().setJavaScriptEnabled(true);
-//        pdf = "https://blog.mozilla.org/security/files/2015/05/HTTPS-FAQ.pdf";
-        pdf = dao.getBodyUrl().toString();
-        myWebView.loadUrl("https://drive.google.com/viewerng/viewer?embedded=true&url=" + pdf);
+        videoView = (VideoView) rootView.findViewById(R.id.videoView);
+
+        MediaController mediaController = new MediaController(getContext());
+        mediaController.setAnchorView(videoView);
+        videoView.setVideoURI(Uri.parse("https://youtu.be/vxf84maD5so"));
+        videoView.start();
     }
 
     @Override

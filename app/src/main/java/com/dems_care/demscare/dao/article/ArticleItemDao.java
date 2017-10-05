@@ -1,4 +1,4 @@
-package com.dems_care.demscare.dao;
+package com.dems_care.demscare.dao.article;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -12,6 +12,17 @@ import com.google.gson.annotations.SerializedName;
 public class ArticleItemDao implements Parcelable {
     // ใช้ เว็บ jsonschema2pojo.org for generate ได้ json -> gson
 
+    public static final Creator<ArticleItemDao> CREATOR = new Creator<ArticleItemDao>() {
+        @Override
+        public ArticleItemDao createFromParcel(Parcel in) {
+            return new ArticleItemDao(in);
+        }
+
+        @Override
+        public ArticleItemDao[] newArray(int size) {
+            return new ArticleItemDao[size];
+        }
+    };
     // Retrofit ดึงข้อมูลจาก server  json เป็น string เราต้องใช้ Retrofit coverter แปลง String เป็น DAO อีกรอบ
     @SerializedName("_id")                private String id;
     @SerializedName("title")              private String title;
@@ -26,18 +37,6 @@ public class ArticleItemDao implements Parcelable {
         imageUrl = in.readString();
         author = in.readString();
     }
-
-    public static final Creator<ArticleItemDao> CREATOR = new Creator<ArticleItemDao>() {
-        @Override
-        public ArticleItemDao createFromParcel(Parcel in) {
-            return new ArticleItemDao(in);
-        }
-
-        @Override
-        public ArticleItemDao[] newArray(int size) {
-            return new ArticleItemDao[size];
-        }
-    };
 
     public String getTitle() {
         return title;

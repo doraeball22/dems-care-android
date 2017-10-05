@@ -4,38 +4,38 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import com.dems_care.demscare.dao.video.VideoItemCollectionDao;
-import com.dems_care.demscare.dao.video.VideoItemDao;
-import com.dems_care.demscare.view.VideoListItem;
+import com.dems_care.demscare.dao.quiz.Quiz;
+import com.dems_care.demscare.dao.quiz.QuizItemCollectionDao;
+import com.dems_care.demscare.view.QuizListItem;
 
 /**
  * Created by Bon on 14/9/2560.
  */
-public class VideoListAdapter extends BaseAdapter {
+public class QuizListAdapter extends BaseAdapter {
 
-    VideoItemCollectionDao dao;
+    QuizItemCollectionDao dao;
 
-    public VideoItemCollectionDao getDao() {
+    public QuizItemCollectionDao getDao() {
         return dao;
     }
 
-    public void setDao(VideoItemCollectionDao dao) {
+    public void setDao(QuizItemCollectionDao dao) {
         this.dao = dao;
     }
 
     @Override
     public int getCount() {
-        if(dao == null)
+        if (dao == null)
             return 0;
-        if (dao.getVideos() == null)
+        if (dao.getQuizs() == null)
             return 0;
-        return dao.getVideos().size();
+        return dao.getQuizs().size();
     }
 
     @Override
     public Object getItem(int position) {
 
-        return dao.getVideos().get(position);
+        return dao.getQuizs().get(position);
     }
 
     @Override
@@ -45,14 +45,14 @@ public class VideoListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        VideoListItem item;
+        QuizListItem item;
         if (convertView != null)
-            item = ( VideoListItem) convertView;
+            item = (QuizListItem) convertView;
         else
-            item = new  VideoListItem(parent.getContext());
+            item = new QuizListItem(parent.getContext());
 
         // get Data from DAO
-        VideoItemDao dao = (VideoItemDao) getItem(position);
+        Quiz dao = (Quiz) getItem(position);
         // set value
         item.setNameTitle(dao.getTitle());
         item.setImageUrl(dao.getImageUrl());

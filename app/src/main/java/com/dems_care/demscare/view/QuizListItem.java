@@ -16,25 +16,25 @@ import com.inthecheesefactory.thecheeselibrary.view.state.BundleSavedState;
 /**
  * Created by Bon on 14/9/2560.
  */
-public class ArticleListItem extends BaseCustomViewGroup {
+public class QuizListItem extends BaseCustomViewGroup {
 
     TextView tvTitle;
     ImageView ivImg;
 
-    public ArticleListItem(Context context) {
+    public QuizListItem(Context context) {
         super(context);
         initInflate();
         initInstances();
     }
 
-    public ArticleListItem(Context context, AttributeSet attrs) {
+    public QuizListItem(Context context, AttributeSet attrs) {
         super(context, attrs);
         initInflate();
         initInstances();
         initWithAttrs(attrs, 0, 0);
     }
 
-    public ArticleListItem(Context context, AttributeSet attrs, int defStyleAttr) {
+    public QuizListItem(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initInflate();
         initInstances();
@@ -42,7 +42,7 @@ public class ArticleListItem extends BaseCustomViewGroup {
     }
 
     @TargetApi(25)
-    public ArticleListItem(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public QuizListItem(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         initInflate();
         initInstances();
@@ -50,7 +50,7 @@ public class ArticleListItem extends BaseCustomViewGroup {
     }
 
     private void initInflate() {
-        inflate(getContext(), R.layout.list_item_article, this);
+        inflate(getContext(), R.layout.list_item_quiz, this);
     }
 
     private void initInstances() {
@@ -95,20 +95,6 @@ public class ArticleListItem extends BaseCustomViewGroup {
         // Restore State from bundle here
     }
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int width = MeasureSpec.getSize(widthMeasureSpec); // width in px
-        int height = width * 2/3;
-        int newHeightMeasureSpec = MeasureSpec.makeMeasureSpec(
-                height,
-                MeasureSpec.EXACTLY
-        );
-        // Child Views หลอกลูก
-        super.onMeasure(widthMeasureSpec, newHeightMeasureSpec);
-        // self หลอกตัวเอง
-        setMeasuredDimension(width, height);
-    }
-
     public void setNameTitle(String text) {
         tvTitle.setText(text);
     }
@@ -118,4 +104,5 @@ public class ArticleListItem extends BaseCustomViewGroup {
                 .load(url)
                 .into(ivImg);
     }
+
 }

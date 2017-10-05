@@ -7,12 +7,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 
 import com.dems_care.demscare.R;
 import com.dems_care.demscare.activity.ArticleActivity;
+import com.dems_care.demscare.activity.EbookActivity;
+import com.dems_care.demscare.activity.QuizActivity;
 import com.dems_care.demscare.activity.VideoActivity;
 
 
@@ -125,13 +125,13 @@ public class MainFragment extends Fragment implements View.OnClickListener {
 
         if (v == btnBookMenu) {
             Intent intent = new Intent(getContext(),
-                    VideoActivity.class);
+                    EbookActivity.class);
             startActivity(intent);
         }
 
         if (v == btnTestMenu) {
             Intent intent = new Intent(getContext(),
-                    VideoActivity.class);
+                    QuizActivity.class);
             startActivity(intent);
         }
     }

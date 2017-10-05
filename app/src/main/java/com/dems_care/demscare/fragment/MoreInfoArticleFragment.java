@@ -7,10 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
 import com.dems_care.demscare.R;
-import com.dems_care.demscare.dao.ArticleItemDao;
+import com.dems_care.demscare.dao.article.ArticleItemDao;
 
 
 /**

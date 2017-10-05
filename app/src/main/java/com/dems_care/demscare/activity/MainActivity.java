@@ -2,8 +2,8 @@ package com.dems_care.demscare.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,7 +14,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.dems_care.demscare.R;
-import com.dems_care.demscare.dao.ArticleItemDao;
+import com.dems_care.demscare.dao.article.ArticleItemDao;
 import com.dems_care.demscare.fragment.ArticleListFragment;
 import com.dems_care.demscare.fragment.MainFragment;
 import com.dems_care.demscare.fragment.VideoListFragment;
@@ -114,12 +114,12 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_book) {
             Intent intent = new Intent(MainActivity.this,
-                    ArticleActivity.class);
+                    EbookActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_test) {
             Intent intent = new Intent(MainActivity.this,
-                    ArticleActivity.class);
+                    QuizActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_facebook) {

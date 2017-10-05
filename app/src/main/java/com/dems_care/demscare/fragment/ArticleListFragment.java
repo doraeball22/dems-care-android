@@ -1,7 +1,5 @@
 package com.dems_care.demscare.fragment;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,17 +8,15 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.dems_care.demscare.R;
-import com.dems_care.demscare.activity.ArticleActivity;
 import com.dems_care.demscare.adapter.ArticleListAdapter;
-import com.dems_care.demscare.dao.ArticleItemCollectionDao;
-import com.dems_care.demscare.dao.ArticleItemDao;
+import com.dems_care.demscare.dao.article.ArticleItemCollectionDao;
+import com.dems_care.demscare.dao.article.ArticleItemDao;
 import com.dems_care.demscare.manager.ArticleListManager;
 import com.dems_care.demscare.manager.HttpManager;
 import com.inthecheesefactory.thecheeselibrary.manager.Contextor;
@@ -38,14 +34,41 @@ import retrofit2.Response;
 @SuppressWarnings("unused")
 public class ArticleListFragment extends Fragment {
 
-    // Variable
-    public interface FragmentListener {
-        void onArticleItemClicked(ArticleItemDao dao);
-    }
-
     ListView listView;
     ArticleListAdapter listAdapter;
+    // Listener zone
+    final AdapterView.OnItemClickListener listViewItemClickListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//            Toast.makeText(getContext(), "Position: "+position,
+//                    Toast.LENGTH_SHORT)
+//                    .show();
 
+//            Intent intent = new Intent(getContext(),
+//                    ArticleActivity.class);
+//            startActivity(intent);
+
+            // ส่ง dao ไป MainActivity
+//            if (position < listAdapter.getCount() ) {
+////                ArticleItemDao dao = articleListManager.getDao().getArticles().get(position);
+//                ArticleItemDao dao = ( ArticleItemDao) parent.getItemAtPosition(position);
+//                FragmentListener listener = (FragmentListener) getActivity();
+//                listener.onArticleItemClicked(dao);
+//            }
+
+            // ส่ง dao ไป ArticleActivity
+            if (position < listAdapter.getCount()) {
+                ArticleItemDao dao = (ArticleItemDao) parent.getItemAtPosition(position);
+
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.contentContainer, MoreInfoArticleFragment.newInstance(dao))
+                        .addToBackStack(null)
+                        .commit();
+            }
+
+
+        }
+    };
     SwipeRefreshLayout swipeRefreshLayout;
 
     ArticleListManager articleListManager;
@@ -86,7 +109,7 @@ public class ArticleListFragment extends Fragment {
     @SuppressWarnings("UnusedParameters")
     private void initInstances(View rootView, Bundle savedInstanceState) {
         // Init 'View' instance(s) with rootView.findViewById here
-        listView = (ListView) rootView.findViewById(R.id.listView);
+        listView = (ListView) rootView.findViewById(R.id.listArticleView);
         listAdapter = new ArticleListAdapter();
         listView.setAdapter(listAdapter);
 
@@ -189,45 +212,16 @@ public class ArticleListFragment extends Fragment {
         // Restore Instance State here
     }
 
- // Listener zone
-    final AdapterView.OnItemClickListener listViewItemClickListener = new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//            Toast.makeText(getContext(), "Position: "+position,
-//                    Toast.LENGTH_SHORT)
-//                    .show();
-
-//            Intent intent = new Intent(getContext(),
-//                    ArticleActivity.class);
-//            startActivity(intent);
-
-            // ส่ง dao ไป MainActivity
-//            if (position < listAdapter.getCount() ) {
-////                ArticleItemDao dao = articleListManager.getDao().getArticles().get(position);
-//                ArticleItemDao dao = ( ArticleItemDao) parent.getItemAtPosition(position);
-//                FragmentListener listener = (FragmentListener) getActivity();
-//                listener.onArticleItemClicked(dao);
-//            }
-
-            // ส่ง dao ไป ArticleActivity
-            if (position < listAdapter.getCount() ) {
-                ArticleItemDao dao = ( ArticleItemDao) parent.getItemAtPosition(position);
-
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.contentContainer, MoreInfoArticleFragment.newInstance(dao))
-                        .addToBackStack(null)
-                        .commit();
-            }
-
-
-        }
-    };
-
     public void replaceFragment(Fragment someFragment) {
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
         transaction.replace(R.id.contentContainer, someFragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    // Variable
+    public interface FragmentListener {
+        void onArticleItemClicked(ArticleItemDao dao);
     }
 
 }

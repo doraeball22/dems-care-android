@@ -1,4 +1,4 @@
-package com.dems_care.demscare.dao;
+package com.dems_care.demscare.dao.article;
 
 import com.google.gson.annotations.SerializedName;
 

@@ -4,9 +4,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import com.dems_care.demscare.dao.ArticleItemCollectionDao;
-import com.dems_care.demscare.dao.ArticleItemDao;
-import com.dems_care.demscare.manager.ArticleListManager;
+import com.dems_care.demscare.dao.article.ArticleItemCollectionDao;
+import com.dems_care.demscare.dao.article.ArticleItemDao;
 import com.dems_care.demscare.view.ArticleListItem;
 
 /**
@@ -16,12 +15,12 @@ public class ArticleListAdapter extends BaseAdapter {
 
     ArticleItemCollectionDao dao;
 
-    public void setDao(ArticleItemCollectionDao dao) {
-        this.dao = dao;
-    }
-
     public ArticleItemCollectionDao getDao() {
         return dao;
+    }
+
+    public void setDao(ArticleItemCollectionDao dao) {
+        this.dao = dao;
     }
 
     @Override

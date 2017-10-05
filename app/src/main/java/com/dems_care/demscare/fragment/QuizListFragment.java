@@ -13,11 +13,11 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.dems_care.demscare.R;
-import com.dems_care.demscare.adapter.VideoListAdapter;
-import com.dems_care.demscare.dao.video.VideoItemCollectionDao;
-import com.dems_care.demscare.dao.video.VideoItemDao;
+import com.dems_care.demscare.adapter.QuizListAdapter;
+import com.dems_care.demscare.dao.quiz.Quiz;
+import com.dems_care.demscare.dao.quiz.QuizItemCollectionDao;
 import com.dems_care.demscare.manager.HttpManager;
-import com.dems_care.demscare.manager.VideoListManager;
+import com.dems_care.demscare.manager.QuizListManager;
 import com.inthecheesefactory.thecheeselibrary.manager.Contextor;
 
 import java.io.IOException;
@@ -31,38 +31,39 @@ import retrofit2.Response;
  * Created by Bon on 14/9/2560.
  */
 @SuppressWarnings("unused")
-public class VideoListFragment extends Fragment {
+public class QuizListFragment extends Fragment {
 
-    ListView listView;
-    VideoListAdapter listAdapter;
     // Listener zone
     final AdapterView.OnItemClickListener listViewItemClickListener = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-            if (position < listAdapter.getCount()) {
-                VideoItemDao dao = (VideoItemDao) parent.getItemAtPosition(position);
-
-                getFragmentManager().beginTransaction()
-                        .replace(R.id.contentContainer, MoreInfoVideoFragment.newInstance(dao))
-                        .addToBackStack(null)
-                        .commit();
-            }
+//            if (position < listAdapter.getCount() ) {
+//                Quiz dao = ( Quiz) parent.getItemAtPosition(position);
+//
+//                getFragmentManager().beginTransaction()
+//                        .replace(R.id.contentContainer, MoreInfoQuizFragment.newInstance(dao))
+//                        .addToBackStack(null)
+//                        .commit();
+//            }
 
 
         }
     };
+    ListView listView;
+    QuizListAdapter listAdapter;
+
     SwipeRefreshLayout swipeRefreshLayout;
 
-    VideoListManager videoListManager;
+    QuizListManager quizListManager;
 
-    public VideoListFragment() {
+    public QuizListFragment() {
         super();
     }
 
     @SuppressWarnings("unused")
-    public static VideoListFragment newInstance() {
-        VideoListFragment fragment = new VideoListFragment();
+    public static QuizListFragment newInstance() {
+        QuizListFragment fragment = new QuizListFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -80,7 +81,7 @@ public class VideoListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_list_video, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_list_quiz, container, false);
         initInstances(rootView, savedInstanceState);
         return rootView;
     }
@@ -92,8 +93,8 @@ public class VideoListFragment extends Fragment {
     @SuppressWarnings("UnusedParameters")
     private void initInstances(View rootView, Bundle savedInstanceState) {
         // Init 'View' instance(s) with rootView.findViewById here
-        listView = (ListView) rootView.findViewById(R.id.listVideoView);
-        listAdapter = new VideoListAdapter();
+        listView = (ListView) rootView.findViewById(R.id.listQuizView);
+        listAdapter = new QuizListAdapter();
         listView.setAdapter(listAdapter);
 
         // Handle click item in ListView
@@ -117,7 +118,7 @@ public class VideoListFragment extends Fragment {
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                    swipeRefreshLayout.setEnabled(firstVisibleItem == 0);
+                swipeRefreshLayout.setEnabled(firstVisibleItem == 0);
             }
         });
         // Logic to Load Data
@@ -126,21 +127,20 @@ public class VideoListFragment extends Fragment {
     }
 
     private void reloadData() {
-        Call<VideoItemCollectionDao> call = HttpManager.getInstance().getService().loadVideoList();
-        call.enqueue(new Callback<VideoItemCollectionDao>() {
+        Call<QuizItemCollectionDao> call = HttpManager.getInstance().getService().loadQuizList();
+        call.enqueue(new Callback<QuizItemCollectionDao>() {
             @Override
-            public void onResponse(Call<VideoItemCollectionDao> call,
-                                   Response<VideoItemCollectionDao> response) {
+            public void onResponse(Call<QuizItemCollectionDao> call,
+                                   Response<QuizItemCollectionDao> response) {
                 swipeRefreshLayout.setRefreshing(false);
                 if (response.isSuccessful()) {
-                    VideoItemCollectionDao dao = response.body();
+                    QuizItemCollectionDao dao = response.body();
                     listAdapter.setDao(dao);
                     listAdapter.notifyDataSetChanged();
                     Toast.makeText(Contextor.getInstance().getContext(),
-                            dao.getVideos().get(0).getTitle(),
+                            dao.getQuizs().get(0).getTitle(),
                             Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     // Handle when Reaponse เข้ามาแต่ ไม่ success
                     try {
                         Toast.makeText(Contextor.getInstance().getContext(),
@@ -153,7 +153,7 @@ public class VideoListFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<VideoItemCollectionDao> call,
+            public void onFailure(Call<QuizItemCollectionDao> call,
                                   Throwable t) {
                 // Handle
                 swipeRefreshLayout.setRefreshing(false);
@@ -194,7 +194,7 @@ public class VideoListFragment extends Fragment {
 
     // Variable
     public interface FragmentListener {
-        void onVideoItemClicked(VideoItemDao dao);
+        void onQuizItemClicked(Quiz dao);
     }
 
 }

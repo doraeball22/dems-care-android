@@ -2,30 +2,30 @@ package com.dems_care.demscare.manager;
 
 import android.content.Context;
 
-import com.dems_care.demscare.dao.article.ArticleItemCollectionDao;
+import com.dems_care.demscare.dao.quiz.QuizItemCollectionDao;
 import com.inthecheesefactory.thecheeselibrary.manager.Contextor;
 
 /**
  * Created by Bon on 14/9/2560.
  */
-public class ArticleListManager {
+public class QuizListManager {
 
-    private static ArticleListManager instance;
+    private static QuizListManager instance;
     private Context mContext;
-    private ArticleItemCollectionDao dao;
+    private QuizItemCollectionDao dao;
 
-    private ArticleListManager() {
+    private QuizListManager() {
         mContext = Contextor.getInstance().getContext();
     }
 
-    public static ArticleListManager getInstance() {
+    public static QuizListManager getInstance() {
         if (instance == null)
-            instance = new ArticleListManager();
+            instance = new QuizListManager();
         return instance;
     }
 
-    public static void setInstance(ArticleListManager instance) {
-        ArticleListManager.instance = instance;
+    public static void setInstance(QuizListManager instance) {
+        QuizListManager.instance = instance;
     }
 
     public Context getmContext() {
@@ -36,11 +36,11 @@ public class ArticleListManager {
         this.mContext = mContext;
     }
 
-    public ArticleItemCollectionDao getDao() {
+    public QuizItemCollectionDao getDao() {
         return dao;
     }
 
-    public void setDao(ArticleItemCollectionDao dao) {
+    public void setDao(QuizItemCollectionDao dao) {
         this.dao = dao;
     }
 
