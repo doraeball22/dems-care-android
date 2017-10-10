@@ -9,27 +9,27 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 
 import com.dems_care.demscare.R;
-import com.dems_care.demscare.dao.article.ArticleItemDao;
+import com.dems_care.demscare.dao.book.Book;
 
 
 /**
  * Created by Bon on 14/9/2560.
  */
 @SuppressWarnings("unused")
-public class MoreInfoArticleFragment extends Fragment {
+public class MoreInfoBookFragment extends Fragment {
 
     WebView myWebView;
     String pdf;
 
-    ArticleItemDao dao;
+    Book dao;
 
-    public MoreInfoArticleFragment() {
+    public MoreInfoBookFragment() {
         super();
     }
 
     @SuppressWarnings("unused")
-    public static MoreInfoArticleFragment newInstance(ArticleItemDao dao) {
-        MoreInfoArticleFragment fragment = new MoreInfoArticleFragment();
+    public static MoreInfoBookFragment newInstance(Book dao) {
+        MoreInfoBookFragment fragment = new MoreInfoBookFragment();
         Bundle args = new Bundle();
         args.putParcelable("dao", dao);
         fragment.setArguments(args);
@@ -50,7 +50,7 @@ public class MoreInfoArticleFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_moreinfo_article, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_moreinfo_book, container, false);
         initInstances(rootView, savedInstanceState);
         return rootView;
     }

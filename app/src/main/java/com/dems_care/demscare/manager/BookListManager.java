@@ -2,30 +2,30 @@ package com.dems_care.demscare.manager;
 
 import android.content.Context;
 
-import com.dems_care.demscare.dao.ebook.EbookItemCollectionDao;
+import com.dems_care.demscare.dao.book.BookItemCollectionDao;
 import com.inthecheesefactory.thecheeselibrary.manager.Contextor;
 
 /**
  * Created by Bon on 14/9/2560.
  */
-public class EbookListManager {
+public class BookListManager {
 
-    private static EbookListManager instance;
+    private static BookListManager instance;
     private Context mContext;
-    private EbookItemCollectionDao dao;
+    private BookItemCollectionDao dao;
 
-    private EbookListManager() {
+    private BookListManager() {
         mContext = Contextor.getInstance().getContext();
     }
 
-    public static EbookListManager getInstance() {
+    public static BookListManager getInstance() {
         if (instance == null)
-            instance = new EbookListManager();
+            instance = new BookListManager();
         return instance;
     }
 
-    public static void setInstance(EbookListManager instance) {
-        EbookListManager.instance = instance;
+    public static void setInstance(BookListManager instance) {
+        BookListManager.instance = instance;
     }
 
     public Context getmContext() {
@@ -36,11 +36,11 @@ public class EbookListManager {
         this.mContext = mContext;
     }
 
-    public EbookItemCollectionDao getDao() {
+    public BookItemCollectionDao getDao() {
         return dao;
     }
 
-    public void setDao(EbookItemCollectionDao dao) {
+    public void setDao(BookItemCollectionDao dao) {
         this.dao = dao;
     }
 

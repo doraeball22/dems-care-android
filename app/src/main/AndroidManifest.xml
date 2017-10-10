@@ -25,7 +25,7 @@
         <activity android:name=".activity.ArticleActivity" />
         <activity android:name=".activity.VideoActivity" />
         <activity android:name=".activity.QuizActivity" />
-        <activity android:name=".activity.EbookActivity"></activity>
+        <activity android:name=".activity.BookActivity"></activity>
     </application>
 
 </manifest>

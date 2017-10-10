@@ -11,7 +11,7 @@ import android.widget.ImageButton;
 
 import com.dems_care.demscare.R;
 import com.dems_care.demscare.activity.ArticleActivity;
-import com.dems_care.demscare.activity.EbookActivity;
+import com.dems_care.demscare.activity.BookActivity;
 import com.dems_care.demscare.activity.QuizActivity;
 import com.dems_care.demscare.activity.VideoActivity;
 
@@ -125,7 +125,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
 
         if (v == btnBookMenu) {
             Intent intent = new Intent(getContext(),
-                    EbookActivity.class);
+                    BookActivity.class);
             startActivity(intent);
         }
 

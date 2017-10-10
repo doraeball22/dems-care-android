@@ -1,7 +1,7 @@
 package com.dems_care.demscare.manager.http;
 
 import com.dems_care.demscare.dao.article.ArticleItemCollectionDao;
-import com.dems_care.demscare.dao.ebook.EbookItemCollectionDao;
+import com.dems_care.demscare.dao.book.BookItemCollectionDao;
 import com.dems_care.demscare.dao.quiz.QuizItemCollectionDao;
 import com.dems_care.demscare.dao.video.VideoItemCollectionDao;
 
@@ -20,8 +20,8 @@ public interface ApiService {
     @GET("videos")
     Call<VideoItemCollectionDao> loadVideoList();
 
-    @GET("ebooks")
-    Call<EbookItemCollectionDao> loadEbookList();
+    @GET("books")
+    Call<BookItemCollectionDao> loadBookList();
 
     @GET("quizs")
     Call<QuizItemCollectionDao> loadQuizList();

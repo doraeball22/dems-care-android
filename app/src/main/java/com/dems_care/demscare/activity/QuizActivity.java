@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.dems_care.demscare.R;
-import com.dems_care.demscare.dao.article.ArticleItemDao;
+import com.dems_care.demscare.dao.quiz.Quiz;
 import com.dems_care.demscare.fragment.QuizListFragment;
 
 public class QuizActivity extends AppCompatActivity {
@@ -17,7 +17,7 @@ public class QuizActivity extends AppCompatActivity {
 
         initInstances();
 
-        ArticleItemDao dao = getIntent().getParcelableExtra("dao");
+        Quiz dao = getIntent().getParcelableExtra("dao");
 
         // Add Main Fragment
         if (savedInstanceState == null) {
@@ -34,7 +34,6 @@ public class QuizActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-
     // Handle button on actionbar
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -46,6 +45,4 @@ public class QuizActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-
 }

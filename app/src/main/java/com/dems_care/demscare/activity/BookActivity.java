@@ -5,26 +5,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.dems_care.demscare.R;
-import com.dems_care.demscare.dao.video.VideoItemDao;
-import com.dems_care.demscare.fragment.VideoListFragment;
+import com.dems_care.demscare.dao.book.Book;
+import com.dems_care.demscare.fragment.BookListFragment;
 
-public class VideoActivity extends AppCompatActivity {
+public class BookActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_video);
+        setContentView(R.layout.activity_book);
 
         initInstances();
 
-        VideoItemDao dao = getIntent().getParcelableExtra("dao");
+        Book dao = getIntent().getParcelableExtra("dao");
 
         // Add Main Fragment
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
 //                    .add(R.id.contentContainer, MoreInfoArticleFragment.newInstance(dao))
 //                    .commit();
-                    .add(R.id.contentContainer, VideoListFragment.newInstance())
+                    .add(R.id.contentContainer, BookListFragment.newInstance())
                     .commit();
         }
     }
